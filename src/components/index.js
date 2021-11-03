@@ -1,3 +1,4 @@
 import ToggleButton from "./ToggleButton";
+import SliderComponent from "./Slider";
 
-export { ToggleButton };
+export { ToggleButton, SliderComponent };
