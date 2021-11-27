@@ -3,6 +3,7 @@ import SliderComponent from "./Slider";
 import Accordion from "./Accordion";
 import HamBurger from "./HamBurger";
 import HamBurgerDropdown from "./HamBurgerDropdown";
+import RadioButton from "./RadioButton";
 
 export {
   ToggleButton,
@@ -10,4 +11,5 @@ export {
   Accordion,
   HamBurger,
   HamBurgerDropdown,
+  RadioButton,
 };
