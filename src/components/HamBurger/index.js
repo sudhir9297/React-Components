@@ -24,6 +24,7 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 
   span {
     position: absolute;

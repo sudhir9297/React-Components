@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { HamBurger } from "./components";
+import { HamBurgerDropdown } from "./components";
 
 function App() {
   const [value, setValue] = useState(false);
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <AppContainer>
-      <HamBurger value={value} handleClick={handleClick} />
+      <HamBurgerDropdown value={value} handleClick={handleClick} />
     </AppContainer>
   );
 }
