@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Accordion } from "./components";
+import { HamBurger } from "./components";
 
 function App() {
+  const [value, setValue] = useState(false);
+
+  const handleClick = () => {
+    setValue(!value);
+  };
+
   return (
     <AppContainer>
-      <Accordion title="Octopuses" content="Octopuses have three hearts." />
+      <HamBurger value={value} handleClick={handleClick} />
     </AppContainer>
   );
 }
@@ -18,4 +24,7 @@ const AppContainer = styled.div`
   padding: 40px;
   background-color: #1f1f1f;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
