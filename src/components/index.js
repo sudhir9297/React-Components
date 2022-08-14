@@ -4,6 +4,7 @@ import Accordion from "./Accordion";
 import HamBurger from "./HamBurger";
 import HamBurgerDropdown from "./HamBurgerDropdown";
 import RadioButton from "./RadioButton";
+import Carousel from "./Carousel";
 
 export {
   ToggleButton,
@@ -12,4 +13,5 @@ export {
   HamBurger,
   HamBurgerDropdown,
   RadioButton,
+  Carousel,
 };
