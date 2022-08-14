@@ -59,7 +59,7 @@ function App() {
   };
 
   return (
-    <AppContainer>
+    <AppContainer onClick={() => setToggleContextMenu(false)}>
       <h1>Custom Context Menu</h1>
 
       <InnerWrapper>
@@ -99,33 +99,41 @@ const AppContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #f5f5f5;
+  background-color: #f0f4f9;
+  color: #000000;
   position: relative;
 `;
 
 const InnerWrapper = styled.div`
-  width: 90%;
+  width: 98%;
   height: 100%;
   margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   gap: 2.2rem;
   grid-auto-flow: dense;
   padding: 1rem;
+
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const CardBox = styled.div`
-  background: #fff;
+  background-color: #ffffff;
   height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #000000;
 
   border-radius: 6px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-
   font-size: 40px;
   font-weight: 600;
 `;
