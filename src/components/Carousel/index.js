@@ -113,7 +113,11 @@ function Carousel() {
       renderItem: (
         <CardBoxWrapper isActive={item.id === active}>
           <BackgroundCard />
-          <Image src={item.image} isActive={item.id === active} />
+          <Image
+            src={item.image}
+            isActive={item.id === active}
+            draggable={false}
+          />
           <ItemText isActive={item.id === active}>
             <h3>{item.title}</h3>
             <div>{item.desc}</div>
@@ -304,6 +308,7 @@ const Image = styled.img`
   position: absolute;
   bottom: -10px;
   left: 0;
+  user-select: none;
   transition: all 0.3s ease-in-out;
   transform-origin: bottom;
   transform: ${({ isActive }) =>
@@ -318,6 +323,7 @@ const ItemText = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
+  user-select: none;
 
   h3 {
     font-weight: 600;

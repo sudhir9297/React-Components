@@ -5,6 +5,7 @@ import HamBurger from "./HamBurger";
 import HamBurgerDropdown from "./HamBurgerDropdown";
 import RadioButton from "./RadioButton";
 import Carousel from "./Carousel";
+import ContextMenu from "./ContextMenu";
 
 export {
   ToggleButton,
@@ -14,4 +15,5 @@ export {
   HamBurgerDropdown,
   RadioButton,
   Carousel,
+  ContextMenu,
 };
