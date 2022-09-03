@@ -1,91 +1,43 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ContextMenu } from "./components";
-import { ContentMenuOption } from "./constant";
+import { useSpring, a } from "react-spring";
 
 function App() {
-  const [data, setData] = useState([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ]);
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 1],
+    config: { mass: 5, tension: 350, friction: 40 },
+  }));
+  const calc = (x, y) => [
+    -(y - window.innerHeight / 2) / 10,
+    (x - window.innerWidth / 2) / 10,
+    1.1,
+  ];
+  const trans = (x, y, s) =>
+    `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
-  const [toggleContextMenu, setToggleContextMenu] = useState(false);
-  const [itemId, setItemId] = useState(null);
-  const [itemPosition, setItemPosition] = useState({ x: 0, y: 0 });
-
-  const onRightClick = (e, id) => {
-    let parentW = document.getElementById("singleItem").offsetWidth;
-    e.preventDefault();
-
-    let x = e.clientX,
-      y = e.clientY;
-
-    let leftMarginOffset = (1 / 100) * parentW;
-
-    if (window.innerWidth - e.clientX < 160 + leftMarginOffset) {
-      x = window.innerWidth - (leftMarginOffset + 160);
-    }
-
-    if (window.innerHeight - e.clientY < 60) {
-      y = window.innerHeight - 65;
-    }
-
-    var coordinate = { ...itemPosition };
-    coordinate.x = x;
-    coordinate.y = y;
-
-    setItemPosition(coordinate);
-    setToggleContextMenu(true);
-    setItemId(id);
-  };
-
-  const filterList = (id) => {
-    const newData = data.filter((item) => item !== id);
-    setData(newData);
-  };
-
-  const onContextMenuClick = (name) => {
-    switch (name) {
-      case "Duplicate":
-        console.log("duplicate");
-        return setToggleContextMenu(false);
-      case "Delete":
-        filterList(itemId);
-        console.log("Delete");
-        return setToggleContextMenu(false);
-      case "Edit":
-        console.log("Edit");
-        return setToggleContextMenu(false);
-    }
+  const handleMouseMove = (x, y) => {
+    const data = calc(x, y);
+    set({ xys: data });
   };
 
   return (
-    <AppContainer onClick={() => setToggleContextMenu(false)}>
-      <h1>Custom Context Menu</h1>
+    <AppContainer>
+      <CardBox
+        onMouseMove={({ clientX: x, clientY: y }) => handleMouseMove(x, y)}
+        onMouseLeave={() => set({ xys: [0, 0, 1] })}
+        style={{ transform: props.xys.to(trans) }}
+      >
+        <ImageWrapper className="card__img">
+          <Image src={"/shoe1.png"} draggable="false" />
+        </ImageWrapper>
+        <Name>Nike Air Force</Name>
+        <DetailContainer className="card__desc">
+          <Description>Best of the Best</Description>
 
-      <InnerWrapper>
-        {data.map((item, index) => (
-          <CardBox
-            key={index}
-            id="singleItem"
-            onContextMenu={(e) => onRightClick(e, item)}
-          >
-            {item}
-          </CardBox>
-        ))}
-
-        {toggleContextMenu && (
-          <ContextMenu
-            x={itemPosition.x}
-            y={itemPosition.y}
-            contextItem={[
-              ContentMenuOption.edit,
-              ContentMenuOption.duplicate,
-              ContentMenuOption.delete,
-            ]}
-            contextClicked={onContextMenuClick}
-          />
-        )}
-      </InnerWrapper>
+          <span class="old">Rs. 990.00</span>
+          <span class="new">Rs. 749.00</span>
+        </DetailContainer>
+      </CardBox>
     </AppContainer>
   );
 }
@@ -98,42 +50,103 @@ const AppContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background-color: #f0f4f9;
+  /* flex-direction: column; */
+  background-color: #f0f0f0;
   color: #000000;
   position: relative;
 `;
 
-const InnerWrapper = styled.div`
-  width: 98%;
-  height: 100%;
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  gap: 2.2rem;
-  grid-auto-flow: dense;
-  padding: 1rem;
+const CardBox = styled(a.div)`
+  width: 200px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  will-change: transform;
+  background-color: #fff;
 
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  box-shadow: 0 0.5rem 1rem #d1d9e6;
 
-  ::-webkit-scrollbar {
-    display: none;
+  :hover {
+    box-shadow: 0 0.9rem 2rem #d1d9e6;
+
+    span {
+      left: 0;
+    }
+
+    .card__img {
+      transform: rotate(30deg);
+      margin-left: 3.5rem;
+    }
+
+    .card__desc {
+      margin-left: 3.5rem;
+      padding: 0 1.5rem;
+      width: 80%;
+    }
   }
 `;
 
-const CardBox = styled.div`
-  background-color: #ffffff;
-  height: 250px;
+const Name = styled.span`
+  position: absolute;
+  left: -25%;
+  top: 0;
+  width: 3.5rem;
+  height: 100%;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000000;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.5s;
+`;
 
-  border-radius: 6px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  font-size: 40px;
-  font-weight: 600;
+const ImageWrapper = styled.div`
+  width: 180px;
+  height: auto;
+  padding: 3rem 0;
+  transition: 0.5s;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+`;
+
+const DetailContainer = styled.div`
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transition: 0.5s;
+
+  span {
+    display: block;
+    text-align: center;
+  }
+
+  .old {
+    font-size: 14px;
+    color: tomato;
+    margin-bottom: 0.25rem;
+  }
+  .new {
+    font-size: 18px;
+    font-weight: bold;
+  }
+`;
+
+const Description = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: grey;
+  user-select: none;
+  padding: 5px 0;
 `;
