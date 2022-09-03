@@ -20,11 +20,15 @@ function App() {
     set({ xys: data });
   };
 
+  const handleMouseLeave = () => {
+    set({ xys: [0, 0, 1] });
+  };
+
   return (
     <AppContainer>
       <CardBox
         onMouseMove={({ clientX: x, clientY: y }) => handleMouseMove(x, y)}
-        onMouseLeave={() => set({ xys: [0, 0, 1] })}
+        onMouseLeave={handleMouseLeave}
         style={{ transform: props.xys.to(trans) }}
       >
         <ImageWrapper className="card__img">
@@ -33,7 +37,6 @@ function App() {
         <Name>Nike Air Force</Name>
         <DetailContainer className="card__desc">
           <Description>Best of the Best</Description>
-
           <span class="old">Rs. 990.00</span>
           <span class="new">Rs. 749.00</span>
         </DetailContainer>
