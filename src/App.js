@@ -1,46 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSpring, a } from "react-spring";
+
+import { gsap, CSSPlugin, Expo } from "gsap";
+gsap.registerPlugin(CSSPlugin);
 
 function App() {
-  const [props, set] = useSpring(() => ({
-    xys: [0, 0, 1],
-    config: { mass: 5, tension: 350, friction: 40 },
-  }));
-  const calc = (x, y) => [
-    -(y - window.innerHeight / 2) / 10,
-    (x - window.innerWidth / 2) / 10,
-    1.1,
-  ];
-  const trans = (x, y, s) =>
-    `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+  const [counter, setCounter] = useState(0);
 
-  const handleMouseMove = (x, y) => {
-    const data = calc(x, y);
-    set({ xys: data });
-  };
+  useEffect(() => {
+    const count = setInterval(() => {
+      setCounter((counter) =>
+        counter < 100
+          ? counter + 1
+          : (clearInterval(count), setCounter(100), reveal())
+      );
+    }, 25);
+  }, []);
 
-  const handleMouseLeave = () => {
-    set({ xys: [0, 0, 1] });
+  const reveal = () => {
+    const t1 = gsap.timeline({
+      onComplete: () => {
+        console.log("completed");
+      },
+    });
+    t1.to(".follow", {
+      width: "100%",
+      ease: Expo.easeInOut,
+      duration: 1.2,
+      delay: 0.7,
+    })
+      .to(".hide", { opacity: 0, duration: 0.3 })
+      .to(".hide", { display: "none", duration: 0.3 })
+      .to(".follow", {
+        height: "100%",
+        ease: Expo.easeInOut,
+        duration: 0.7,
+        delay: 0.5,
+      })
+      .to(".content", { width: "100%", ease: Expo.easeInOut, duration: 0.7 })
+      .to(".title-lines", { display: "block", duration: 0.1 })
+      .to(".title-lines", {
+        opacity: 1,
+        stagger: 0.15,
+        ease: Expo.easeInOut,
+        duration: 0.6,
+      });
   };
 
   return (
     <AppContainer>
-      <CardBox
-        onMouseMove={({ clientX: x, clientY: y }) => handleMouseMove(x, y)}
-        onMouseLeave={handleMouseLeave}
-        style={{ transform: props.xys.to(trans) }}
-      >
-        <ImageWrapper className="card__img">
-          <Image src={"/shoe1.png"} draggable="false" />
-        </ImageWrapper>
-        <Name>Nike Air Force</Name>
-        <DetailContainer className="card__desc">
-          <Description>Best of the Best</Description>
-          <span class="old">Rs. 990.00</span>
-          <span class="new">Rs. 749.00</span>
-        </DetailContainer>
-      </CardBox>
+      <Loading>
+        <Follow className="follow"></Follow>
+        <ProgressBar
+          className="hide"
+          id="progress-bar"
+          style={{ width: counter + "%" }}
+        ></ProgressBar>
+        <Count id="count" className="hide">
+          {counter}%
+        </Count>
+      </Loading>
+
+      <Content className="content">
+        <p className="title-lines">The greatest glory in living lies</p>
+        <p className="title-lines">not in never falling,</p>
+        <p className="title-lines">but in rising every time we fall.</p>
+        <p className="title-lines">-Nelson Mandela</p>
+      </Content>
     </AppContainer>
   );
 }
@@ -50,106 +76,68 @@ export default App;
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* flex-direction: column; */
-  background-color: #f0f0f0;
   color: #000000;
   position: relative;
 `;
-
-const CardBox = styled(a.div)`
-  width: 200px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  border-radius: 1rem;
-  overflow: hidden;
-  will-change: transform;
-  background-color: #fff;
-
-  box-shadow: 0 0.5rem 1rem #d1d9e6;
-
-  :hover {
-    box-shadow: 0 0.9rem 2rem #d1d9e6;
-
-    span {
-      left: 0;
-    }
-
-    .card__img {
-      transform: rotate(30deg);
-      margin-left: 3.5rem;
-    }
-
-    .card__desc {
-      margin-left: 3.5rem;
-      padding: 0 1.5rem;
-      width: 80%;
-    }
-  }
-`;
-
-const Name = styled.span`
-  position: absolute;
-  left: -25%;
-  top: 0;
-  width: 3.5rem;
+const Loading = styled.div`
   height: 100%;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  width: 100%;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+`;
+const Follow = styled.div`
+  position: absolute;
+  background-color: #f48049;
+  height: 2px;
+  width: 0;
+  left: 0;
+  z-index: 2;
+`;
+
+const ProgressBar = styled.div`
+  position: absolute;
+  left: 0;
+  background-color: #fff;
+  height: 2px;
+  width: 0;
+  transition: 0.4s ease-out;
+`;
+
+const Count = styled.p`
+  position: absolute;
+  font-size: 130px;
+  color: #fff;
+  transform: translateY(-15px);
+  font-weight: 500;
+`;
+
+const Content = styled.div`
+  height: 100%;
+  width: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #121212;
+  padding: auto;
+
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  color: #fff;
-  font-weight: bold;
-  transition: 0.5s;
-`;
-
-const ImageWrapper = styled.div`
-  width: 180px;
-  height: auto;
-  padding: 3rem 0;
-  transition: 0.5s;
-`;
-
-const Image = styled.img`
-  max-width: 100%;
-  height: auto;
-`;
-
-const DetailContainer = styled.div`
-  width: 100%;
   flex-direction: column;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  transition: 0.5s;
+  overflow: hidden;
+  color: #fff;
 
-  span {
-    display: block;
+  p {
     text-align: center;
+    font-size: 104px;
+    opacity: 0;
+    display: none;
+    font-weight: 500;
+    margin: 0;
   }
-
-  .old {
-    font-size: 14px;
-    color: tomato;
-    margin-bottom: 0.25rem;
-  }
-  .new {
-    font-size: 18px;
-    font-weight: bold;
-  }
-`;
-
-const Description = styled.div`
-  font-size: 14px;
-  font-weight: 500;
-  color: grey;
-  user-select: none;
-  padding: 5px 0;
 `;
