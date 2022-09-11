@@ -13,7 +13,7 @@ function App() {
       <IconWithToolTips tooltip="Instagram" hoverColor="#E4405F">
         {Instagram()}
       </IconWithToolTips>
-      <IconWithToolTips tooltip="LinkedIn" hoverColor="#3A559F">
+      <IconWithToolTips tooltip="Facebook" hoverColor="#3A559F">
         {Facebook()}
       </IconWithToolTips>
     </AppContainer>
@@ -26,6 +26,7 @@ const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
   color: #000000;
+  background: #e0e8f1;
   position: relative;
   display: flex;
   align-items: center;
