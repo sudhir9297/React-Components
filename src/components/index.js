@@ -7,6 +7,7 @@ import RadioButton from "./RadioButton";
 import Carousel from "./Carousel";
 import ContextMenu from "./ContextMenu";
 import IconWithToolTips from "./IconWithTooltips";
+import NavBar from "./NavBar";
 
 export {
   ToggleButton,
@@ -18,4 +19,5 @@ export {
   Carousel,
   ContextMenu,
   IconWithToolTips,
+  NavBar,
 };
