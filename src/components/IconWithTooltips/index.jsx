@@ -29,6 +29,7 @@ const IconWrapper = styled.div`
 
   :hover {
     background-color: ${({ hoverColor }) => hoverColor};
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
 
     .tooltip {
       top: -45px;
@@ -38,6 +39,7 @@ const IconWrapper = styled.div`
       text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
       background: ${({ hoverColor }) => hoverColor};
       color: #ffffff;
+      text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
 
       ::before {
         background: ${({ hoverColor }) => hoverColor};
@@ -60,13 +62,6 @@ const Icon = styled.div`
   svg {
     fill: #000000;
     color: #000000;
-  }
-
-  :hover {
-    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-    .tooltip {
-      text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-    }
   }
 `;
 
