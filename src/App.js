@@ -1,49 +1,62 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import gsap from "gsap";
+import React from "react";
+import styled, { keyframes, css } from "styled-components";
 
 function App() {
-  console.log(gsap);
+  const row1 = [
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/7ae42bac3b34999c0db3.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/b2bd91d7b87b2181ca45.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6591cdc0702b32310306.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3b7d9f4b073deb6a9b74.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3cd767dea94a85078ca4.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/a2b3c3709ffedce2a22a.png",
+  ];
 
-  useEffect(() => {
-    const t1 = gsap.timeline();
-    t1.from(".singleLine div ", {
-      y: 200,
-      ease: "power4.out",
-      delay: 1,
-      duration: 1.8,
-      stagger: {
-        amount: 0.4,
-      },
-    });
-
-    return () => {};
-  });
+  const row2 = [
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6c585c33ca6c71c79bb7.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/9dd55e54b5a28658bf4e.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/0384060dcbf73b6a707c.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/35e044b3354aaa0caed5.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/f50ae7cbf6cc805bdadc.png",
+    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6c585c33ca6c71c79bb7.png",
+  ];
 
   return (
     <AppContainer>
       <Wrapper>
-        <Line className="singleLine">
-          <Text>
-            <span>“</span>C<span>o</span>DE<span>R</span>,
-          </Text>
-        </Line>
-        <Line className="singleLine">
-          <Text>
-            DESI<span>G</span>N <span>A</span>DDICT,
-          </Text>
-        </Line>
-        <Line className="singleLine">
-          <Text>
-            <span>A</span>BST<span>RA</span>CT
-          </Text>
-        </Line>
-        <Line className="singleLine">
-          <Text>
-            {" "}
-            T<span>H</span>INKE<span>R.”</span>
-          </Text>
-        </Line>
+        <Text>With Great Outcomes.</Text>
+        <Note>Our customers have gotten offers from awesome companies.</Note>
+        <Marquee>
+          <MarqueeGroup>
+            {row1.map((el) => (
+              <ImageGroup>
+                <Image src={el} />
+              </ImageGroup>
+            ))}
+          </MarqueeGroup>
+          <MarqueeGroup>
+            {row1.map((el) => (
+              <ImageGroup>
+                <Image src={el} />
+              </ImageGroup>
+            ))}
+          </MarqueeGroup>
+        </Marquee>
+        <Marquee>
+          <MarqueeGroup2>
+            {row2.map((el) => (
+              <ImageGroup>
+                <Image src={el} />
+              </ImageGroup>
+            ))}
+          </MarqueeGroup2>
+          <MarqueeGroup2>
+            {row2.map((el) => (
+              <ImageGroup>
+                <Image src={el} />
+              </ImageGroup>
+            ))}
+          </MarqueeGroup2>
+        </Marquee>
       </Wrapper>
     </AppContainer>
   );
@@ -55,7 +68,7 @@ const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
   color: #000000;
-  background: #121212;
+
   position: relative;
   display: flex;
   align-items: center;
@@ -63,39 +76,86 @@ const AppContainer = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Line = styled.div`
   width: 100%;
-  height: 11vw;
-  position: relative;
-  overflow: hidden;
+  height: fit-content;
 
-  &:nth-of-type(1) {
-    display: flex;
-    justify-content: flex-end;
-  }
-  &:nth-of-type(3) {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const Text = styled.div`
-  position: absolute;
-  font-size: 10vw;
-  color: #fff;
-  line-height: 10vw;
+  font-size: 35px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #02203c;
+`;
 
-  span {
-    font-family: "Major Mono Display", monospace;
-    color: rgb(150, 149, 149);
-    font-size: 10vw;
+const Note = styled.div`
+  font-size: 18px;
+  font-weight: 200;
+  margin-bottom: 40px;
+  color: #7c8e9a;
+`;
+
+const Marquee = styled.div`
+  display: flex;
+  width: 1200px;
+  overflow: hidden;
+  user-select: none;
+
+  mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 10%,
+    hsl(0 0% 0% / 1) 90%,
+    hsl(0 0% 0% / 0)
+  );
+`;
+
+const scrollX = keyframes`
+  from {
+    left: translateX(0);
   }
+  to {
+    transform: translateX(-100%);
+  }
+`;
+
+const common = css`
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  white-space: nowrap;
+  width: 100%;
+  animation: ${scrollX} 30s linear infinite;
+`;
+
+const MarqueeGroup = styled.div`
+  ${common}
+`;
+const MarqueeGroup2 = styled.div`
+  ${common}
+  animation-direction: reverse;
+  animation-delay: -3s;
+`;
+
+const ImageGroup = styled.div`
+  display: grid;
+  place-items: center;
+  width: clamp(10rem, 1rem + 40vmin, 30rem);
+  padding: calc(clamp(10rem, 1rem + 30vmin, 30rem) / 10);
+`;
+
+const Image = styled.img`
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid black; */
+  border-radius: 0.5rem;
+  aspect-ratio: 16/9;
+  padding: 5px 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
