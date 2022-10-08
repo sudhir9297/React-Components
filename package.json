@@ -13,6 +13,7 @@
     "react-scripts": "4.0.3",
     "react-spring": "^9.5.2",
     "react-spring-carousel": "^2.0.19",
+    "smooth-scrollbar": "^8.8.1",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.0.1"
   },

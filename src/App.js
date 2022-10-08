@@ -1,63 +1,75 @@
-import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Scrollbar from "smooth-scrollbar";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  const row1 = [
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/7ae42bac3b34999c0db3.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/b2bd91d7b87b2181ca45.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6591cdc0702b32310306.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3b7d9f4b073deb6a9b74.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3cd767dea94a85078ca4.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/a2b3c3709ffedce2a22a.png",
-  ];
+  useEffect(() => {
+    const scrollBar = Scrollbar.init(document.querySelector(".main"), {
+      damping: 0.01,
+      delegateTo: document,
+      alwaysShowTracks: true,
+      speed: 0.2,
+    });
 
-  const row2 = [
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6c585c33ca6c71c79bb7.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/9dd55e54b5a28658bf4e.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/0384060dcbf73b6a707c.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/35e044b3354aaa0caed5.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/f50ae7cbf6cc805bdadc.png",
-    "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6c585c33ca6c71c79bb7.png",
-  ];
+    ScrollTrigger.defaults({
+      scroller: ".main",
+    });
+    ScrollTrigger.scrollerProxy(".main", {
+      scrollTop(value) {
+        if (arguments.length) {
+          scrollBar.scrollTop = value;
+        }
+        return scrollBar.scrollTop;
+      },
+    });
+
+    scrollBar.addListener(ScrollTrigger.update);
+
+    const matches = document.querySelectorAll("p");
+
+    matches.forEach((target) => {
+      gsap.to(target, {
+        backgroundPositionX: "0%",
+        stagger: 1,
+        scrollTrigger: {
+          trigger: target,
+          scrub: true,
+          start: "top center",
+          end: "bottom 40%",
+        },
+      });
+    });
+
+    return () => {};
+  }, []);
 
   return (
     <AppContainer>
-      <Wrapper>
-        <Text>With Great Outcomes.</Text>
-        <Note>Our customers have gotten offers from awesome companies.</Note>
-        <Marquee>
-          <MarqueeGroup>
-            {row1.map((el) => (
-              <ImageGroup>
-                <Image src={el} />
-              </ImageGroup>
-            ))}
-          </MarqueeGroup>
-          <MarqueeGroup>
-            {row1.map((el) => (
-              <ImageGroup>
-                <Image src={el} />
-              </ImageGroup>
-            ))}
-          </MarqueeGroup>
-        </Marquee>
-        <Marquee>
-          <MarqueeGroup2>
-            {row2.map((el) => (
-              <ImageGroup>
-                <Image src={el} />
-              </ImageGroup>
-            ))}
-          </MarqueeGroup2>
-          <MarqueeGroup2>
-            {row2.map((el) => (
-              <ImageGroup>
-                <Image src={el} />
-              </ImageGroup>
-            ))}
-          </MarqueeGroup2>
-        </Marquee>
-      </Wrapper>
+      <Container className="main">
+        <Section>Scroll to See Effect</Section>
+        <Text>
+          <p>I'm a Junior Full Stack Developer</p>
+          <p>and a recent graduate of the</p>
+          <p>Software Program.</p>
+
+          <p>I create project under the notion</p>
+          <p>that "less is more" and my work</p>
+          <p>reflects my addiction for minimal</p>
+          <p>and clean design as well as my</p>
+          <p>desire to push boundaries.</p>
+
+          <p>I am currently learning Redux and</p>
+          <p>Jest to further my front-end</p>
+          <p>focus while developing my concepts on</p>
+          <p>FlyBy into native mobile application</p>
+          <p>using React Native.</p>
+        </Text>
+        <Section>Scroll Up</Section>
+      </Container>
     </AppContainer>
   );
 }
@@ -65,97 +77,42 @@ function App() {
 export default App;
 
 const AppContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  color: #000000;
-
+  font-size: 100px;
   position: relative;
+  background-color: #0f0f0f;
+`;
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  overflow: auto;
 `;
 
-const Wrapper = styled.div`
+const Section = styled.div`
+  height: 70vh;
   width: 100%;
-  height: fit-content;
-
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 `;
 
 const Text = styled.div`
-  font-size: 35px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: #02203c;
-`;
+  font-size: 100px;
+  font-weight: 600;
+  padding: 70px 0;
 
-const Note = styled.div`
-  font-size: 18px;
-  font-weight: 200;
-  margin-bottom: 40px;
-  color: #7c8e9a;
-`;
-
-const Marquee = styled.div`
-  display: flex;
-  width: 1200px;
-  overflow: hidden;
-  user-select: none;
-
-  mask-image: linear-gradient(
-    to right,
-    hsl(0 0% 0% / 0),
-    hsl(0 0% 0% / 1) 10%,
-    hsl(0 0% 0% / 1) 90%,
-    hsl(0 0% 0% / 0)
-  );
-`;
-
-const scrollX = keyframes`
-  from {
-    left: translateX(0);
+  p {
+    background: linear-gradient(to right, #ffffff 50%, #252525 50%);
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    user-select: none;
   }
-  to {
-    transform: translateX(-100%);
-  }
-`;
-
-const common = css`
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  white-space: nowrap;
-  width: 100%;
-  animation: ${scrollX} 30s linear infinite;
-`;
-
-const MarqueeGroup = styled.div`
-  ${common}
-`;
-const MarqueeGroup2 = styled.div`
-  ${common}
-  animation-direction: reverse;
-  animation-delay: -3s;
-`;
-
-const ImageGroup = styled.div`
-  display: grid;
-  place-items: center;
-  width: clamp(10rem, 1rem + 40vmin, 30rem);
-  padding: calc(clamp(10rem, 1rem + 30vmin, 30rem) / 10);
-`;
-
-const Image = styled.img`
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
-  /* border: 1px solid black; */
-  border-radius: 0.5rem;
-  aspect-ratio: 16/9;
-  padding: 5px 20px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
