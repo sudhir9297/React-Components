@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 function RadioButton({ value, handleClick, item }) {
   return (
@@ -15,8 +15,8 @@ export default RadioButton;
 const Container = styled.div`
   width: 200px;
   height: 50px;
-  border: 2px solid ${({ isTrue }) => (isTrue ? "#3a7bec" : "#e1e5e9")};
-  background-color: ${({ isTrue }) => (isTrue ? "#ffffff" : "#e1e5e9")};
+  border: 2px solid ${({ isTrue }) => (isTrue ? '#3a7bec' : '#e1e5e9')};
+  background-color: ${({ isTrue }) => (isTrue ? '#ffffff' : '#e1e5e9')};
   border-radius: 8px;
   display: flex;
   align-items: center;

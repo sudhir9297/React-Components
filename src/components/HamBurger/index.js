@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 function index({ value, handleClick }) {
   return (
@@ -37,15 +37,15 @@ const Container = styled.div`
 
   span:nth-child(1) {
     transform: ${({ value }) =>
-      value ? "translateY(0px) rotate(45deg)" : "translateY(-20px)"};
+      value ? 'translateY(0px) rotate(45deg)' : 'translateY(-20px)'};
   }
   span:nth-child(2) {
     transform: ${({ value }) =>
-      value ? "translateX(80px)" : "translateX(0px)"};
+      value ? 'translateX(80px)' : 'translateX(0px)'};
   }
   span:nth-child(3) {
     transform: ${({ value }) =>
-      value ? "translateY(0px) rotate(315deg)" : "translateY(20px)"};
+      value ? 'translateY(0px) rotate(315deg)' : 'translateY(20px)'};
     transition-delay: 0.15s;
   }
 `;

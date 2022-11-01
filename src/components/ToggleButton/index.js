@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 function ToggleButton({ value, handleClick }) {
   return (
@@ -28,8 +28,8 @@ const Circle = styled.div`
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background-color: ${({ value }) => (value ? "#3a7bec" : "#5F7181")};
+  background-color: ${({ value }) => (value ? '#3a7bec' : '#5F7181')};
   margin: 0 3px;
-  transform: ${({ value }) => (value ? "translateX(20px)" : "translateX(0px)")};
+  transform: ${({ value }) => (value ? 'translateX(20px)' : 'translateX(0px)')};
   transition: all 0.2s ease-in-out;
 `;

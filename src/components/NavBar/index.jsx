@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { TiHome, TiHeartFullOutline } from "react-icons/ti";
-import { IoSettings } from "react-icons/io5";
-import { HiUser } from "react-icons/hi";
+import { TiHome, TiHeartFullOutline } from 'react-icons/ti';
+import { IoSettings } from 'react-icons/io5';
+import { HiUser } from 'react-icons/hi';
 
 const NavBar = () => {
   return (

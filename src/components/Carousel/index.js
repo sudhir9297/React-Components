@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
-import { useSpringCarousel } from "react-spring-carousel";
+import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import { useSpringCarousel } from 'react-spring-carousel';
 
 function Carousel() {
   const [active, setActive] = useState(1);
@@ -9,66 +9,66 @@ function Carousel() {
   const List = [
     {
       id: 1,
-      title: "Dracaena Trifasciata",
+      title: 'Dracaena Trifasciata',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/4.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/4.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 2,
-      title: "Crassula Ovata",
+      title: 'Crassula Ovata',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/3.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/3.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 3,
-      title: "Browningia Hertlingiana",
+      title: 'Browningia Hertlingiana',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/1.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/1.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 4,
-      title: "Haworthiopsis Attenuata ",
+      title: 'Haworthiopsis Attenuata ',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/5.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/5.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 5,
-      title: "Chlorophytum Comosum",
+      title: 'Chlorophytum Comosum',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/2.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/2.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 6,
-      title: "Dracaena Trifasciata",
+      title: 'Dracaena Trifasciata',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/4.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/4.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 7,
-      title: "Crassula Ovata",
+      title: 'Crassula Ovata',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/3.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/3.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 8,
-      title: "Browningia Hertlingiana",
+      title: 'Browningia Hertlingiana',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/1.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/1.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
     {
       id: 9,
-      title: "Haworthiopsis Attenuata ",
+      title: 'Haworthiopsis Attenuata ',
       image:
-        "https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/5.png",
-      desc: "One of the most effective houseplants in air purification.",
+        'https://default-vessel.s3.ap-south-1.amazonaws.com/avagam-bucket/5.png',
+      desc: 'One of the most effective houseplants in air purification.',
     },
   ];
 
@@ -89,9 +89,9 @@ function Carousel() {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", (e) => handleSize(e.target.innerWidth));
+    window.addEventListener('resize', (e) => handleSize(e.target.innerWidth));
     return () => {
-      window.removeEventListener("resize", (e) =>
+      window.removeEventListener('resize', (e) =>
         handleSize(e.target.innerWidth)
       );
     };
@@ -128,7 +128,7 @@ function Carousel() {
   });
 
   useListenToCustomEvent((event) => {
-    if (event.eventName === "onSlideStartChange") {
+    if (event.eventName === 'onSlideStartChange') {
       setActive(event.nextItem.index + 1);
     }
   });
@@ -163,7 +163,7 @@ function Carousel() {
               with kindness and they will take care of you.
             </Text>
           </TextWrapper>
-          <Text>Our Favourite this week</Text>{" "}
+          <Text>Our Favourite this week</Text>{' '}
         </InnerWrapper>
       </ContentWrapper>
 
@@ -286,7 +286,7 @@ const CardBoxWrapper = styled.div`
 
   transition: all 0.3s ease-in-out;
   transform-origin: bottom;
-  transform: ${({ isActive }) => (isActive ? "scale(1.2)" : "scale(0.9)")};
+  transform: ${({ isActive }) => (isActive ? 'scale(1.2)' : 'scale(0.9)')};
 `;
 
 const BackgroundCard = styled.div`
@@ -312,7 +312,7 @@ const Image = styled.img`
   transition: all 0.3s ease-in-out;
   transform-origin: bottom;
   transform: ${({ isActive }) =>
-    isActive ? "scale(1.2) translateY(-40px)" : "scale(1) translateY(0px)"};
+    isActive ? 'scale(1.2) translateY(-40px)' : 'scale(1) translateY(0px)'};
 `;
 
 const ItemText = styled.div`
@@ -331,7 +331,7 @@ const ItemText = styled.div`
   }
 
   div {
-    display: ${({ isActive }) => (isActive ? "block" : "none")};
+    display: ${({ isActive }) => (isActive ? 'block' : 'none')};
     font-size: 12px;
   }
 `;

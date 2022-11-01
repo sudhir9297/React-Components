@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { IoChevronDown } from "react-icons/io5";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { IoChevronDown } from 'react-icons/io5';
 
 function Accordion({ title, content }) {
   const [value, setValue] = useState(false);
@@ -37,7 +37,7 @@ const Container = styled.div`
 const Header = styled.div`
   height: 60px;
   width: 100%;
-  max-height: ${({ value }) => (value ? "70px" : "50px")};
+  max-height: ${({ value }) => (value ? '70px' : '50px')};
   transition: max-height 0.25s ease-in-out;
   border-radius: 4px;
   display: flex;
@@ -62,11 +62,11 @@ const Icon = styled.div`
 const Content = styled.div`
   width: 100%;
   height: 90px;
-  max-height: ${({ value }) => (value ? "100px" : "0px")};
+  max-height: ${({ value }) => (value ? '100px' : '0px')};
   transition: max-height 0.25s ease-in-out;
   font-size: 14px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  border-top: 1px solid ${({ value }) => (value ? "#e1e5e9" : "transparent")};
+  border-top: 1px solid ${({ value }) => (value ? '#e1e5e9' : 'transparent')};
 `;

@@ -6,5 +6,5 @@ export {
   Instagram,
   LinkedIn,
   Facebook,
-} from "./svgs";
-export { ContentMenuOption } from "./contextMenuOption";
+} from './svgs';
+export { ContentMenuOption } from './contextMenuOption';

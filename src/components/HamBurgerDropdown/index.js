@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import HamBurger from "../HamBurger";
-import { FaUserCircle, FaSignOutAlt, FaCog } from "react-icons/fa";
+import React from 'react';
+import styled from 'styled-components';
+import HamBurger from '../HamBurger';
+import { FaUserCircle, FaSignOutAlt, FaCog } from 'react-icons/fa';
 
 function HamBurgerDropDown({ value, handleClick }) {
   return (
@@ -11,15 +11,15 @@ function HamBurgerDropDown({ value, handleClick }) {
         <Arrow value={value} />
         <DropDown value={value}>
           <Item>
-            <FaUserCircle style={{ marginRight: "10px" }} />
+            <FaUserCircle style={{ marginRight: '10px' }} />
             Profile
           </Item>
           <Item>
-            <FaCog style={{ marginRight: "10px" }} />
+            <FaCog style={{ marginRight: '10px' }} />
             Setting
           </Item>
           <Item>
-            <FaSignOutAlt style={{ marginRight: "10px" }} />
+            <FaSignOutAlt style={{ marginRight: '10px' }} />
             logout
           </Item>
         </DropDown>
@@ -36,10 +36,10 @@ const Container = styled.div`
 
 const DropDown = styled.div`
   border-radius: 8px;
-  border: ${({ value }) => (value ? "1px" : "0px")} solid #e1e5e9;
+  border: ${({ value }) => (value ? '1px' : '0px')} solid #e1e5e9;
   width: 200px;
   height: fit-content;
-  max-height: ${({ value }) => (value ? "200px" : "0px")};
+  max-height: ${({ value }) => (value ? '200px' : '0px')};
   background-color: #f0f4f7;
   overflow: hidden;
   transition: all 0.25s ease-in-out;

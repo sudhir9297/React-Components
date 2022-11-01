@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const ContextMenu = ({ x, y, contextItem, contextClicked }) => {
   return (
-    <ContextContainer x={x + "px"} y={y + "px"}>
+    <ContextContainer x={x + 'px'} y={y + 'px'}>
       {contextItem.map((item, index) => (
         <ContextMenuItem key={index} onClick={() => contextClicked(item.label)}>
           <Icon>{item.icon}</Icon>

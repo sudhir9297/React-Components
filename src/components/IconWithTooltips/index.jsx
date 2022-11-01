@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const IconWithToolTip = ({ children, hoverColor, tooltip }) => {
   return (
@@ -63,7 +63,7 @@ const Tooltips = styled.div`
 
   ::before {
     position: absolute;
-    content: "";
+    content: '';
     height: 8px;
     width: 8px;
     background: #ffffff;
