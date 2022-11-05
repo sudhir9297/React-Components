@@ -52,7 +52,7 @@ const SingleCollapsable = ({ item, isActive, isShrink, handleClick }) => {
   };
 
   return (
-    <SingleCollapsableWrapper>
+    <div>
       <TabWrapper isActive={isActive} onClick={handleClickFunction}>
         <IconContainer isActive={isActive}>{item.icon()}</IconContainer>
         <TabTextWrapper isShrink={isShrink}>
@@ -79,7 +79,7 @@ const SingleCollapsable = ({ item, isActive, isShrink, handleClick }) => {
           </SubWrapper>
         ))}
       </SubContentWrapper>
-    </SingleCollapsableWrapper>
+    </div>
   );
 };
 
@@ -112,7 +112,7 @@ function App() {
       isNotifiTab: true,
       icon: BsStickies,
       notifiNumber: 6,
-      notifiColor: '#A2B9EF',
+      notifiColor: '#3D6ADA',
     },
     {
       id: 5,
@@ -120,7 +120,7 @@ function App() {
       isNotifiTab: true,
       icon: BsTag,
       notifiNumber: 2,
-      notifiColor: '#EFD0A2',
+      notifiColor: '#F164C1',
     },
     {
       id: 6,
@@ -253,26 +253,22 @@ const AppContainer = styled.div`
   height: 100vh;
   display: grid;
   place-items: center;
-  background-color: #c2cecb;
+  background-color: #272b30;
 `;
 
 const SideBarContainer = styled.div`
   position: relative;
-
   height: 80vh;
-  border-right: 1px solid #e6e6e6;
-  background-color: #fdfdfd;
-
+  background-color: #ffffff;
   box-sizing: border-box;
   padding: 15px;
   font-family: 'DM Sans', sans-serif;
-
   display: flex;
   flex-direction: column;
   transition: all 0.4s ease;
-
-  width: ${({ isShrink }) => (isShrink ? '75px' : '240px')};
+  width: ${({ isShrink }) => (isShrink ? '75px' : '280px')};
   border-radius: ${({ isShrink }) => (isShrink ? '4px' : '8px')};
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 7px 29px 0px;
 `;
 
 const LogoWrapper = styled.div`
@@ -285,7 +281,7 @@ const LogoWrapper = styled.div`
   padding: 0 2px;
 `;
 const Logo = styled.div`
-  background-color: #2c2e32;
+  background-color: #000;
   border-radius: 12px;
   width: 40px;
   height: 40px;
@@ -304,7 +300,8 @@ const LogoText = styled.div`
   font-size: 20px;
   opacity: ${({ isShrink }) => (isShrink ? '0' : '1')};
 
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
+  color: #000;
   span {
     font-weight: 600;
   }
@@ -323,29 +320,30 @@ const SideBarButton = styled.button`
   position: absolute;
   top: 4vh;
   right: -10px;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 
   transform: ${({ isShrink }) =>
     isShrink ? 'rotate(180deg)' : 'rotate(0deg)'};
 
   :hover {
     box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
   }
 `;
 
 const RoundIconWrapper = styled.button`
   cursor: pointer;
-  background-color: #f1f1f1;
+  background-color: #fff;
   border-radius: 50%;
   width: 20px;
   height: 20px;
   display: grid;
   place-content: center;
   border: none;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   transform: ${({ isOpen }) => (isOpen ? 'rotate(-90deg)' : 'rotate(90deg)')};
-  box-shadow: rgba(255, 255, 255, 0.5) 0px 2px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 `;
 
 const SideTabWrapper = styled.div`
@@ -373,11 +371,11 @@ const TabWrapper = styled.div`
   margin: 5px 0;
 
   background-color: ${({ isActive }) => (isActive ? '#EFEFEF' : 'transparent')};
-  color: ${({ isActive }) => (isActive ? '#2c2e32' : '#8b8d91')};
-  transition: all 0.4s ease;
+  color: ${({ isActive }) => (isActive ? '#000' : '#8b8d91')};
+  transition: all 0.3s ease;
 
   :hover {
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     background-color: #efefef;
   }
 `;
@@ -387,8 +385,8 @@ const IconWrap = styled.div`
   padding: 0;
 
   svg {
-    transition: all 0.4s ease;
-    color: ${({ isActive }) => (isActive ? '#2c2e32' : '#8b8d91')};
+    transition: all 0.3s ease;
+    color: ${({ isActive }) => (isActive ? '#000' : '#8b8d91')};
   }
 `;
 
@@ -397,34 +395,30 @@ const TabTextWrapper = styled.div`
   display: flex;
   opacity: ${({ isShrink }) => (isShrink ? '0' : '1')};
   justify-content: space-between;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
 `;
 const Text = styled.div`
   font-size: 14px;
+  font-weight: 500;
 `;
 const NotificationBox = styled.div`
   width: 20px;
   height: 20px;
   aspect-ratio: 1;
   font-size: 12px;
-  border-radius: 3px;
+  border-radius: 6px;
   display: grid;
   place-items: center;
   font-weight: 600;
   background-color: ${({ color }) => color};
-  color: #2c2e32;
-`;
-
-const SingleCollapsableWrapper = styled.div`
-  /* display: flex;
-  flex-direction: column; */
+  color: #fff;
 `;
 
 const SubContentWrapper = styled.div`
   height: auto;
   max-height: ${({ isOpen }) => (isOpen ? '120px' : '0px')};
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   overflow: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -487,8 +481,12 @@ const SubTextWrapper = styled.div`
   color: #8b8d91;
   font-weight: 500;
   opacity: ${({ isShrink }) => (isShrink ? '0' : '1')};
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
+
+  :hover {
+    color: #000;
+  }
 
   span {
     font-size: 14px;
