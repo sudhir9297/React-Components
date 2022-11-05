@@ -253,7 +253,7 @@ const AppContainer = styled.div`
   height: 100vh;
   display: grid;
   place-items: center;
-  background-color: #272b30;
+  background-color: #fed2bd;
 `;
 
 const SideBarContainer = styled.div`
@@ -268,9 +268,32 @@ const SideBarContainer = styled.div`
   transition: all 0.4s ease;
   width: ${({ isShrink }) => (isShrink ? '75px' : '280px')};
   border-radius: ${({ isShrink }) => (isShrink ? '4px' : '8px')};
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
+const SideBarButton = styled.button`
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  position: absolute;
+  top: 4vh;
+  right: -10px;
+  transition: all 0.3s ease;
+
+  transform: ${({ isShrink }) =>
+    isShrink ? 'rotate(180deg)' : 'rotate(0deg)'};
+
+  :hover {
+    box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
+    transition: all 0.3s ease;
+  }
+`;
 const LogoWrapper = styled.div`
   display: grid;
   grid-template-columns: max-content auto;
@@ -307,50 +330,12 @@ const LogoText = styled.div`
   }
 `;
 
-const SideBarButton = styled.button`
-  cursor: pointer;
-  background-color: #fff;
-  border-radius: 50%;
-  width: 20px;
-  aspect-ratio: 1;
-  display: grid;
-  place-content: center;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  position: absolute;
-  top: 4vh;
-  right: -10px;
-  transition: all 0.3s ease;
-
-  transform: ${({ isShrink }) =>
-    isShrink ? 'rotate(180deg)' : 'rotate(0deg)'};
-
-  :hover {
-    box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
-    transition: all 0.3s ease;
-  }
-`;
-
-const RoundIconWrapper = styled.button`
-  cursor: pointer;
-  background-color: #fff;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: grid;
-  place-content: center;
-  border: none;
-  transition: all 0.3s ease;
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(-90deg)' : 'rotate(90deg)')};
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-`;
-
 const SideTabWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
 `;
+
 const TopWrapper = styled.div`
   flex: 1 1 auto;
 `;
@@ -358,6 +343,7 @@ const TopWrapper = styled.div`
 const BottomWrapper = styled.div`
   flex: 0 1 auto;
 `;
+
 const TabWrapper = styled.div`
   cursor: pointer;
   display: grid;
@@ -379,6 +365,7 @@ const TabWrapper = styled.div`
     background-color: #efefef;
   }
 `;
+
 const IconWrap = styled.div`
   font-size: 1.25rem;
   aspect-ratio: 1;
@@ -398,10 +385,12 @@ const TabTextWrapper = styled.div`
   transition: all 0.3s ease;
   white-space: nowrap;
 `;
+
 const Text = styled.div`
   font-size: 14px;
   font-weight: 500;
 `;
+
 const NotificationBox = styled.div`
   width: 20px;
   height: 20px;
@@ -415,6 +404,21 @@ const NotificationBox = styled.div`
   color: #fff;
 `;
 
+// for Second Part
+const RoundIconWrapper = styled.button`
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-content: center;
+  border: none;
+  transition: all 0.3s ease;
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(-90deg)' : 'rotate(90deg)')};
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+`;
 const SubContentWrapper = styled.div`
   height: auto;
   max-height: ${({ isOpen }) => (isOpen ? '120px' : '0px')};
@@ -467,7 +471,6 @@ const DotWrapper = styled.div`
     display: ${({ isLast }) => (isLast ? 'none' : 'block')};
   }
 `;
-
 const DotIcon = styled.span`
   width: 6px;
   height: 6px;
